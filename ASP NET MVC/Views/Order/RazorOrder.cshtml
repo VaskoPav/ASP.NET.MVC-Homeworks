@@ -1,0 +1,40 @@
+﻿@model Order
+
+<h2>Order-one line Values</h2>
+<ul>
+    <li>ID:@Model.Id</li>
+    <li>Pizza:@Model.Pizza</li>
+    <li>@Model.Price</li>
+    <li>User First Name:@Model.User.FirstName</li>
+    <li>User Last Name:@Model.User.LastName</li>
+    <li>User Full Name:@Model.User.GetFullName()</li>
+</ul>
+
+@{ 
+    string status = "Not yet delivered";
+    Model.Delivered = true;
+    if (Model.Delivered)
+    {
+        status = "Delivered";
+    }
+    for(int i=0; i<3; i++)
+    {
+        status += i.ToString();
+        <p>For Loop</p>
+    }
+}
+<h2>Partial View</h2>
+@Html.Partial("~/Views/Shared/_OrderItem.cshtml",Model)
+@for(int i =0; i<2; i++)
+{
+    <ul>
+       <li>ID:@Model.Id</li>
+       <li>User:@Model.User.FirstName</li>
+       <li>Pizza:@Model.Pizza</li>
+       <li>Price+Delivery:@(Model.GetPriceRange())</li>
+       <li>Status:@status</li>
+       
+        <li>This is from partial view</li>
+    </ul>
+                
+}
