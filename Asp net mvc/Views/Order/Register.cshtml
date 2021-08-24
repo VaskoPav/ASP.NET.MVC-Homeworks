@@ -1,0 +1,53 @@
+﻿<h1>It works</h1>
+@model NewOrderViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(x => x.FirstName)
+    @Html.TextBoxFor(x => x.FirstName)
+    <br />
+    @Html.LabelFor(x => x.LastName)
+    @Html.TextBoxFor(x => x.LastName)
+    <br />
+
+    @Html.LabelFor(x => x.NamePizza)
+    @Html.TextBoxFor(x => x.NamePizza)
+    <br />
+
+    @Html.DropDownListFor(x => x.Size,
+    Html.GetEnumSelectList(Model.Size.GetType()))
+    @Html.DropDownListFor(x => x.Size,
+    Html.GetEnumSelectList(Model.Size.GetType()), "Select a pizza")
+
+    <br />
+
+    <button type="submit">Submit</button>
+}
+
+<br />
+<br />
+<br />
+<br />
+
+<!-- TAG HELPER -->
+<a asp-controller="Home" asp-action="Index">Back to home</a>
+<a asp-controller="Home" asp-action="Index" asp-route-id="0">Back to home</a>
+
+<form asp-controller="User" asp-action="Register" method="post">
+    <label asp-for="FirstName"></label>
+    <input asp-for="FirstName" />
+    <br />
+    <label asp-for="LastName"></label>
+    <input asp-for="LastName" />
+    <br />
+    <input asp-for="NamePizza" />
+    <label asp-for="NamePizza"></label>
+    <br />
+
+    <select asp-for="Size" app-items="Html.GetEnumSelectList<Size>()">Select Pizza</select>
+    <select asp-for="Size" app-items="Html.GetEnumSelectList<Size>()">
+        <option value="">Select a pizza</option>
+    </select>
+    <br />
+    <button type="submit">Submit</button>
+</form>
